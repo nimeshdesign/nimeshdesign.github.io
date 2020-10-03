@@ -1,0 +1,90 @@
+.heading {
+  color: hsl(219, 43%, 47%);
+  font-size: 35px;
+  font-weight: 615;
+  padding-top: 10px;
+  padding: 10px;
+  margin: 10px;
+}
+.news {
+  margin-top: 20px;
+  margin-left: 20px;
+  padding: 10px 15px 15px 10px;
+  display: block;
+}
+.item-1,.item-2,.item-3,.item-4,.item-5{
+  box-shadow: 1px 1px 5px #c8dad3;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border-color: #ffffff;
+  padding: 8px 10px 10px 8px;
+}
+
+.head-1,.head-2,.head-3,.head-4,.head-5,.head-6,.head-7,.head-8,.head-9,.head-10,.head-11,.head-12,.head-13
+,.head-14,.head-15{
+  font-size: 26px;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-left: 10px;
+  color: #204051;
+  padding: 5px 3px 3px 5px;
+}
+.item-1 p,.item-2 p,.item-3 p,.item-4 p,.item-5 p{
+  margin-left:10px;
+  padding: 5px 3px 3px 3px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #637373;
+}
+.link-1,.link-2,.link-3,.link-4,.link-5,.link-6,.link-7,.link-8,.link-9,.link-10,.link-11,.link-12,.link-13
+,.link-14,.link-15{
+  font-size: 12px;
+  font-weight: 570;
+  margin-top: -10px;
+  margin-left:10px;
+  padding: 5px 3px 5px 3px;
+}
+.item-1 .date,.item-2 .date,.item-3 .date,.item-4 .date,.item-5 .date{
+  
+	float: right;
+	/*margin-left:20px;*/
+  font-size: 11px;
+  margin-top: 10px;
+  color: #0f4c75;
+  font-weight: 500;
+  padding: 5px 3px 5px 3px;
+}
+
+.news-link .link-1:after,.news-link .link-2:after,.news-link .link-3:after,.news-link .link-4:after,.news-link .link-4:after,.news-link .link-5:after
+,.news-link .link-6:after,.news-link .link-7:after,.news-link .link-8:after,.news-link .link-9:after,.news-link .link-10:after
+,.news-link .link-11:after,.news-link .link-12:after,.news-link .link-12:after,.news-link .link-13:after,.news-link .link-14:after,.news-link .link-15:after{
+  content: " \279C";
+  font-size: 15px;
+  border-radius: 5px;
+  display: inline-block;
+  position: absolute;
+  margin-left: 3px;
+}
+
+.item-1:hover,.item-2:hover,.item-3:hover,.item-4:hover,.item-5:hover{
+  box-shadow: 1px 5px #93b5b3;
+ box-shadow: 0 1px 5px 1px rgba(0,0,0,0.25);
+  cursor: pointer;
+}
+
+.link-1:hover,.link-2:hover,.link-3:hover,.link-4:hover,.link-5:hover,.link-6:hover,.link-7:hover,.link-8:hover,.link-9:hover
+.link-10:hover,.link-11:hover,.link-12:hover,.link-13:hover,.link-14:hover,.link-15:hover {
+  color: #3282b8;
+  /* text-decoration: underline; */
+}
+.next-links p{
+	/*margin-left:20px;*/
+	color:#0f4c75;
+	font-weight:570;
+}
+.page-clicked{
+color:#637373;
+font-weight:590;
+}
+	
