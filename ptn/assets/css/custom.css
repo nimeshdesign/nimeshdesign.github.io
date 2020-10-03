@@ -125,7 +125,7 @@
   width: 120px;
   display: block;
 }
-.newsletter{
+.newsletter {
   margin-top: 10px;
 }
 /* about page */
@@ -154,7 +154,7 @@
   padding-left: 20px;
   display: inline-block;
 }
-.single-faq h2{
+.single-faq h2 {
   text-align: left;
 }
 /* ............................code of conduct page........ */
@@ -189,41 +189,41 @@
 }
 /* .........covid119 PAGE ........ */
 
-.covid19 p{
+.covid19 p {
   text-align: left;
   margin-bottom: 16px;
 }
-.covid19 h4{
+.covid19 h4 {
   text-align: left;
 }
-.covid19 .section-title h2{
+.covid19 .section-title h2 {
   text-align: left;
   margin-bottom: 16px;
 }
-.covid19 ul li{
-text-align: left;
-margin-bottom: 16px;
-margin-left: 50px;
+.covid19 ul li {
+  text-align: left;
+  margin-bottom: 16px;
+  margin-left: 50px;
 }
 /* .........policies PAGE ........ */
 
-.policies p{
+.policies p {
   text-align: left;
   margin-bottom: 16px;
 }
-.policies h4{
+.policies h4 {
   text-align: left;
 }
-.policies .section-title h2{
+.policies .section-title h2 {
   margin-bottom: 16px;
   text-align: left;
 }
-.policies ul li{
-text-align: left;
-margin-bottom: 16px;
-margin-left: 50px;
+.policies ul li {
+  text-align: left;
+  margin-bottom: 16px;
+  margin-left: 50px;
 }
-.pi{
+.pi {
   padding: 30px;
   margin-left: 0px;
 }
@@ -249,7 +249,9 @@ margin-left: 50px;
   .logo-column a.logo img {
     max-width: 255px;
   }
-
+  .about-content h2 {
+    font-size: 30px;
+  }
   .sp {
     padding-top: 50px;
   }
@@ -282,6 +284,12 @@ margin-left: 50px;
     font-size: 40px;
     font-weight: 600;
   }
+  .about-content h2 {
+    font-size: 25px;
+  }
+  .pb {
+    padding-bottom: 30px;
+  }
   .sp {
     padding: 20px 0 20px 0;
   }
@@ -309,19 +317,30 @@ margin-left: 50px;
     flex: 0 0 100%;
     max-width: 100%;
   }
+  .news .col-md-8.center {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
 }
 @media screen and (max-width: 375px) {
   .nav-column .right-nav span {
     padding: 0 5px;
   }
   .logo-column a.logo img {
-    max-width: 200px;
+    max-width: 180px;
+  }
+  .nav-column {
+    /* padding: 5px 0; */
+    font-size: 14px;
   }
   .hero-slider .slide-content h2 {
     font-size: 30px;
   }
   .hero-slider .slide-content p {
     font-size: 15px;
+  }
+  .about-content h2 {
+    font-size: 25px;
   }
   .sp {
     padding: 20px 0 20px 0;
@@ -337,7 +356,10 @@ margin-left: 50px;
     padding: 10px;
   }
   .section-title h2 {
-    font-size: 30px;
+    font-size: 25px;
+  }
+  .pb {
+    padding-bottom: 30px;
   }
   .page-title h2 {
     font-size: 30px;
@@ -358,5 +380,8 @@ margin-left: 50px;
   }
   .news .inner .title h4 {
     padding-top: 20px;
+  }
+  .news{
+    margin-left: 0px;
   }
 }
