@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="assets/css/slicknav.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/custom.css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
 
   <body>
@@ -80,7 +80,7 @@
       </div>
     </header>
     <div
-      class="page-title sp about-cover"
+      class="page-title sp"
       style="
         background-image: url(assets/img/About-Us.png);
         background-size: cover;
@@ -89,22 +89,18 @@
     >
       <div class="container text-center">
         <h2>Weekly News Digest</h2>
-        <p class="issue-head"></p>
-        <p class="issue-content">
-        </p>
       </div>
     </div>
     <div class="news-section sp spmt">
       <div class="container">
         <div class="row">
           <div class="col-md-8">
-            <div class="section-title" style="text-align: left">
-              <h2>This Week's News</h2>
+            <div class="border pi">
+              <p class="issue-head"></p>
+              <p class="issue-content"></p>
             </div>
-			<div class="news-add">
-			</div>
-           
-        </div>
+            <div class="news-add"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -240,95 +236,99 @@
         </div>
       </div>
     </footer>
-	<script>
-		//console.log(localStorage.getItem('name'));
-		var otherObj = JSON.parse(localStorage.getItem('storeData'));
-		if (otherObj.id && otherObj.content) {
-		var issue=otherObj.id;
-		var content=otherObj.content;
-		var date=otherObj.date;
-		var begin=issue.substring(issue.indexOf('-')+1);
-		document.querySelector('.issue-content').innerHTML=content;
-		document.querySelector('.issue-head').innerHTML="Issue#"+begin+" "+"|"+" "+date;
-		//console.log(begin);
-		var filename;
-		$.getJSON('news-data.json',(data, error)=>{
-			let news=data.news;
-			let out="";
-			news=removeDuplicates(news);
-			switch(Number(begin))
-			{
-			case 1:
-			{
-			begin=Number(begin);
-			break;
-			}
-			case 2:
-			{
-			begin=Number(begin)+9;
-			break;
-			}
-			case 3:
-			{
-			begin=Number(begin)+18;
-			break;
-			}
-			case 4:
-			{
-			begin=Number(begin)+27;
-			break;
-			}
-			case 5:
-			{
-			begin=Number(begin)+36;
-			break;
-			}
-			}
-			for(i=begin-1;i<(Number(begin)+9);i++)
-			{
-			//news.forEach((item)=>{
-				let read="Read more";
-				//console.log(news[i]);
-				out+='<div class="news">'+
-					 '<a href="'+news[i].full_url+'">'+
-					 '<h3 class="news-title">'+news[i].title.charAt(0)+news[i].title.substring(news[i].title.charAt(0)).toLowerCase()+'</h3></a>'+
-					 '<p class="news-content">'+truncateText(news[i].content,390)+'</p>'+
-					 '<a class="news-link" href="'+news[i].full_url+'" target="_blank">'+
-					 '<span class="link">'+read+'</span></a>'+'</div><hr>';
-			 
-			}
-		
-		document.querySelector('.news-add').innerHTML=out;
-		//sessionStorage.setItem('issue-visited',"");
-		});
-		}
-		function removeDuplicates(news)  
-		{
-			let newArray = []; 
-            let uniqueObject = {}; 
-            for (let i in news) { 
-                objId= news[i]['news_id'];  
-                uniqueObject[objId] = news[i]; 
-            } 
-              
-            for (i in uniqueObject) { 
-                newArray.push(uniqueObject[i]); 
+    <script>
+      //console.log(localStorage.getItem('name'));
+      var otherObj = JSON.parse(localStorage.getItem("storeData"));
+      if (otherObj.id && otherObj.content) {
+        var issue = otherObj.id;
+        var content = otherObj.content;
+        var date = otherObj.date;
+        var begin = issue.substring(issue.indexOf("-") + 1);
+        document.querySelector(".issue-content").innerHTML = content;
+        document.querySelector(".issue-head").innerHTML =
+          "Issue#" + begin + " " + "|" + " " + date;
+        //console.log(begin);
+        var filename;
+        $.getJSON("news-data.json", (data, error) => {
+          let news = data.news;
+          let out = "";
+          news = removeDuplicates(news);
+          switch (Number(begin)) {
+            case 1: {
+              begin = Number(begin);
+              break;
             }
-			return newArray;
-			//console.log(newArray);
-		}			
+            case 2: {
+              begin = Number(begin) + 9;
+              break;
+            }
+            case 3: {
+              begin = Number(begin) + 18;
+              break;
+            }
+            case 4: {
+              begin = Number(begin) + 27;
+              break;
+            }
+            case 5: {
+              begin = Number(begin) + 36;
+              break;
+            }
+          }
+          for (i = begin - 1; i < Number(begin) + 9; i++) {
+            //news.forEach((item)=>{
+            let read = "Read more";
+            //console.log(news[i]);
+            out +=
+              '<div class="news">' +
+              '<a href="' +
+              news[i].full_url +
+              '">' +
+              '<h3 class="news-title">' +
+              news[i].title.charAt(0) +
+              news[i].title.substring(news[i].title.charAt(0)).toLowerCase() +
+              "</h3></a>" +
+              '<p class="news-content">' +
+              truncateText(news[i].content, 390) +
+              "</p>" +
+              '<a class="news-link" href="' +
+              news[i].full_url +
+              '" target="_blank">' +
+              '<span class="link">' +
+              read +
+              "</span></a>" +
+              "</div><hr>";
+          }
 
-		function truncateText(text, maxLength) {
-	//console.log(text);
-			truncated =text;
+          document.querySelector(".news-add").innerHTML = out;
+          //sessionStorage.setItem('issue-visited',"");
+        });
+      }
+      function removeDuplicates(news) {
+        let newArray = [];
+        let uniqueObject = {};
+        for (let i in news) {
+          objId = news[i]["news_id"];
+          uniqueObject[objId] = news[i];
+        }
 
-		if (truncated.length > maxLength) {
-        truncated = truncated.substr(0,maxLength) + '...';
-		}
-		return truncated;
-		}
-		
-	    </script>
+        for (i in uniqueObject) {
+          newArray.push(uniqueObject[i]);
+        }
+        return newArray;
+        //console.log(newArray);
+      }
+
+      function truncateText(text, maxLength) {
+        //console.log(text);
+        truncated = text;
+
+        if (truncated.length > maxLength) {
+          truncated = truncated.substr(0, maxLength) + "...";
+        }
+        return truncated;
+      }
+    </script>
     <!--Required JS files-->
     <script src="assets/js/jquery-2.2.4.min.js"></script>
     <script src="assets/js/vendor/popper.min.js"></script>
