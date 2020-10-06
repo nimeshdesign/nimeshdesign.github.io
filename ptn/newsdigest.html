@@ -91,76 +91,17 @@
         <h2>News Updates</h2>
       </div>
     </div>
-    <div class="news">
-      <div class="container">
+    
+	<div class="container">
         <div class="row">
-          <div class="col-md-8 center">
-            <div class="item-1">
-              <a href="news.html" onclick="passIssue(event)"
-                ><h3 class="head-1">Issue#1</h3></a
-              >
-              <small class="date">25 September,2020</small>
-              <p>
-                It’s almost 6 months of pandemic and its effect is still visible
-                on the oil and gas industry. Stalled demand may delay oil price
-                recovery till 2021 but the countries like India and China have
-                taken it as an opportunity and are trying to fill their existing
-                storage capacity. Just go ahead and take an insight in this
-                interesting research. So put on your reading glasses and take a
-                seat as there’s a lot of updates to catch on.
-              </p>
-              <a class="news-link" href="news.html" onclick="passIssue(event)"
-                ><span class="link-1">Find more</span></a
-              >
-            </div>
-            <div class="item-2">
-              <a href="news.html" onclick="passIssue(event)"
-                ><h3 class="head-2">Issue#2</h3></a
-              >
-              <small class="date">10 September,2020</small>
-              <p>Issue 2 details!</p>
-              <a class="news-link" href="news.html" onclick="passIssue(event)"
-                ><span class="link-2">Find more</span></a
-              >
-            </div>
-            <div class="item-3">
-              <a href="news.html" onclick="passIssue(event)"
-                ><h3 class="head-3">Issue#3</h3></a
-              >
-              <small class="date">25 August,2020</small>
-              <p>Issue 3 details</p>
-              <a class="news-link" href="news.html" onclick="passIssue(event)"
-                ><span class="link-3">Find more</span></a
-              >
-            </div>
-            <div class="item-4">
-              <a href="news.html" onclick="passIssue(event)"
-                ><h3 class="head-4">Issue#4</h3></a
-              >
-              <small class="date">10 August,2020</small>
-              <p>Issue 4 details!</p>
-              <a class="news-link" href="news.html" onclick="passIssue(event)"
-                ><span class="link-4">Find more</span></a
-              >
-            </div>
-            <div class="item-5">
-              <a href="news.html" onclick="passIssue(event)"
-                ><h3 class="head-5">Issue#5</h3></a
-              >
-              <small class="date">25 July,2020</small>
-              <p>Issue 5 details!</p>
-              <a class="news-link" href="news.html" onclick="passIssue(event)"
-                ><span class="link-5">Find more</span></a
-              >
-            </div>
-            <!--<div class="next-links text-center">
-			<p><a href="newsdigest.html" class="page-1">1</a>&nbsp &nbsp &nbsp &nbsp &nbsp <a href="newsdigest-page-2.html" class="page-2">2</a>
-			&nbsp &nbsp &nbsp &nbsp <a href="newsdigest-page-3.html" class="page-3">3</a></p>-->
-          </div>
-        </div>
-      </div>
-    </div>
-
+          <div class="col-md-8">
+			<div class="news">
+			</div>
+			<div class="next-links text-center" id="next-page">
+			</div>
+		</div>		
+	 </div>
+   </div>
     <footer>
       <div class="footer-top">
         <div class="container">
@@ -294,45 +235,45 @@
       </div>
     </footer>
     <script>
-      var storeData = {};
-      storeData["id"] = "";
-      storeData["content"] = "";
-      storeData["date"] = "";
-      //sessionStorage.clear();
-      document.querySelector(".page-1").className = "page-clicked";
-      function passIssue(e) {
-        var issue = e.target.className;
-        console.log(e.target.className);
-        var con = issue.substring(issue.indexOf("-") + 1);
-        var con_class = "item-" + con;
-        //console.log(document.querySelector('.'+ con_class));
-        var x = document.querySelector("." + con_class);
-        var content = x.querySelector("p").innerText;
-        var date = x.querySelector(".date").innerText;
-        console.log(content);
-        storeData["id"] = issue;
-        storeData["content"] = content;
-        storeData["date"] = date;
-        localStorage.setItem("storeData", JSON.stringify(storeData));
-
-        //e.preventDefault();
-      }
-      /* $(".item-1").click(function () {
-        window.location.href = "news.html";
-      });
-      $(".item-2").click(function () {
-        window.location.href = "news.html";
-      });
-      $(".item-3").click(function () {
-        window.location.href = "news.html";
-      });
-      $(".item-4").click(function () {
-        window.location.href = "news.html";
-      });
-      $(".item-5").click(function () {
-        window.location.href = "news.html";
-      });
-*/
+      $.getJSON('data/issues-list.json',(data)=>{
+		let len=data.issue.length;
+		var end="";
+		end+="<p>";
+		for(let j=1;j<=(len/5);j++)
+		{
+			end+="<a class='pages' href='newsdigest.html?"+j+"' id='page-"+j+"'>" + j + "</a>"+" "+" ";
+		
+		}
+		end+="</p>";
+		document.getElementById('next-page').innerHTML=end;
+		let issues=data.issue;
+		var i,start,page_id;
+		var page="";
+		var url=location.search;
+		if(url.indexOf('?')===-1)
+		{
+			page_id=1;
+		}
+		else
+		{	
+		page_id=url.substring(url.indexOf('?')+1);
+		}
+		document.getElementById('page-'+page_id).className= "page-clicked";
+		//console.log(page_id);
+		start=1+(5*(page_id-1));
+		console.log(start);
+		for(i=start-1;i<=(start+3);i++)
+		{
+		//console.log(issues[i].content);
+			page+="<div class='item'>"+
+				  "<a href='news.html?"+issues[i].issue_id+"'>"+"<h3 class='head'>"+issues[i].heading+"</h3></a>"+
+				   "<small class='date'>"+issues[i].date+"</small>"+
+				    "<p>"+issues[i].content+"</p>"+
+				    "<a class='news-link' href='news.html?"+issues[i].issue_id+"'>"+"<span class='link'>"+"Find more"+"</span></a>"+
+			         "</div>";
+		}
+		document.querySelector('.news').innerHTML=page;
+		});	
     </script>
     <script src="assets/js/jquery-2.2.4.min.js"></script>
     <script src="assets/js/vendor/popper.min.js"></script>

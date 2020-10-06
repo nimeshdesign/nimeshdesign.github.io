@@ -237,72 +237,38 @@
     </footer>
     <script>
       //console.log(localStorage.getItem('name'));
-      var otherObj = JSON.parse(localStorage.getItem("storeData"));
-      if (otherObj.id && otherObj.content) {
-        var issue = otherObj.id;
-        var content = otherObj.content;
-        var date = otherObj.date;
-        var begin = issue.substring(issue.indexOf("-") + 1);
-        document.querySelector(".issue-content").innerHTML = content;
-        document.querySelector(".issue-head").innerHTML =
-          "Issue#" + begin + " " + "|" + " " + date;
-        //console.log(begin);
-        var filename;
-        $.getJSON("news-data.json", (data, error) => {
-          let news = data.news;
-          let out = "";
-          news = removeDuplicates(news);
-          switch (Number(begin)) {
-            case 1: {
-              begin = Number(begin);
-              break;
-            }
-            case 2: {
-              begin = Number(begin) + 9;
-              break;
-            }
-            case 3: {
-              begin = Number(begin) + 18;
-              break;
-            }
-            case 4: {
-              begin = Number(begin) + 27;
-              break;
-            }
-            case 5: {
-              begin = Number(begin) + 36;
-              break;
-            }
-          }
-          for (i = begin - 1; i < Number(begin) + 9; i++) {
-            //news.forEach((item)=>{
-            let read = "Read more";
-            //console.log(news[i]);
-            out +=
-              '<div class="news">' +
-              '<a href="' +
-              news[i].full_url +
-              '">' +
-              '<h3 class="news-title">' +
-              news[i].title.charAt(0) +
-              news[i].title.substring(news[i].title.charAt(0)).toLowerCase() +
-              "</h3></a>" +
-              '<p class="news-content">' +
-              truncateText(news[i].content, 390) +
-              "</p>" +
-              '<a class="news-link" href="' +
-              news[i].full_url +
-              '" target="_blank">' +
-              '<span class="link">' +
-              read +
-              "</span></a>" +
-              "</div><hr>";
-          }
-
-          document.querySelector(".news-add").innerHTML = out;
-          //sessionStorage.setItem('issue-visited',"");
-        });
-      }
+	  var address=location.search;
+		var beg_id=address.substring(address.indexOf('?')+1);
+		$.getJSON('data/issues-list.json',(data)=>{
+			let issue=data.issue;
+		document.querySelector('.issue-content').innerHTML=issue[beg_id-1].content.substring(0,issue[beg_id-1].content.lastIndexOf(','));
+		document.querySelector('.issue-head').innerHTML=issue[beg_id-1].heading+" "+"|"+" "+issue[beg_id-1].date;
+		});
+		var begin=beg_id;
+		$.getJSON('data/data.json',(data)=>{
+			let news=data.news.reverse();
+			//console.log(news.length);
+			let out="";
+			news=removeDuplicates(news);
+			begin=1+10*(begin-1);
+			//console.log(begin);
+			for(i=(news.length-begin);i>=((news.length-begin)-9);i--)
+			{
+			//news.forEach((item)=>{
+				let read="Read more";
+				//console.log(news[i]);
+				out+='<div class="news">'+
+					 '<a href="'+news[i].full_url+'" target="_blank">'+
+					 '<h3 class="news-title">'+news[i].title+'</h3></a>'+
+					 '<p class="news-content">'+truncateText(news[i].content,370)+'</p>'+
+					 '<a class="news-link" href="'+news[i].full_url+'" target="_blank">'+
+					 '<span class="link">'+read+'</span></a>'+'</div><hr>';
+			 
+			}
+		
+		document.querySelector('.news-add').innerHTML=out;
+		//sessionStorage.setItem('issue-visited',"");
+		});
       function removeDuplicates(news) {
         let newArray = [];
         let uniqueObject = {};
