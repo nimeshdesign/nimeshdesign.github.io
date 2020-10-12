@@ -36,6 +36,15 @@
   font-size: 60px;
   font-weight: 300;
 }
+.covid .row{
+  padding: 20px;
+}
+.covid .icon svg{
+  display: block;
+}
+.covid .inner{
+  margin-top: 20px  ;
+}
 
 .brand-area .inner p {
   font-size: 24px;
@@ -57,7 +66,6 @@
 }
 .content p {
   font-size: 15px;
-  font-weight: 200;
 }
 .single-service-2 .inner {
   height: 100%;
