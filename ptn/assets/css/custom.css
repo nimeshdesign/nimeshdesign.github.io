@@ -153,6 +153,10 @@
   border: 1px solid #cad4de;
   border-radius: 7px;
 }
+.covid .row{
+  border: 1px solid #cad4de;
+  border-radius: 7px;
+}
 .service-area .custom-icon .icon {
   display: inline-block;
   font-size: 26px;
